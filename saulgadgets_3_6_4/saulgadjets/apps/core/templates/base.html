@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}Saul Gadjets</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    </head>
+
+    <body>
+        <!-- navbar begins here -->
+        <nav class="navbar is-dark">
+            <div class="navbar-brand">
+                <a href="{% url 'frontpage' %}" class="navbar-item">Saul Gadjets</a>
+
+                <a role="button" aria-label="menu"  href="" class="navbar-burger burger" aria-expanded="false" data-target="main-navbar">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="main-navbar" class="navbar-menu">
+                <div class="navbar-end">
+                    {% for category in menu_categories %}
+                        <a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
+                    {% endfor %}
+
+                    <div class="navbar-item">
+                        <a href="{% url 'cart' %}" class="button is-primary">Cart</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar ends here -->
+
+        <!-- section block begins here -->
+        <section class="section">
+            {% block content %}
+            {% endblock %}
+        </section>
+
+        <!-- footer begins here -->
+        <footer class="footer">
+            <div class="columns">
+                <div class="column is-4">
+                    <a href="{% url 'frontpage' %}" class="navbar-item">Saul Gadjets</a>
+                </div>
+
+                <div class="column is-8">
+                    <a href="{% url 'contact' %}" class="navbar-item">Contact</a>
+                    <a href="{% url 'about' %}" class="navbar-item">About</a>
+                </div>
+            </div>
+        </footer>
+        <!-- footer ends here -->
+
+        <!-- vue js here -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        
+        {% block scripts %}
+        {% endblock %}
+
+    </body>
+</html>
