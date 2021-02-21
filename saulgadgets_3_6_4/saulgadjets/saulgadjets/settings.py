@@ -10,7 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+STRIPE_API_KEY_PUBLISHABLE = 'pk_test_51HzMHGEeGffcp0Bz6WggtiS57f96jfWP2vFXnDtumuRZkveSAY9RQJGUpOBP2I5Hx65QR0w1pV7zAcsG6oQKtEPS00yXnm3WfJ'
+STRIPE_API_KEY_HIDDEN = 'sk_test_51HzMHGEeGffcp0BzyTERWeFBZ03ULIX9RoOz56QFWV16mCZBEeLhlha43t5Egw1fuDATyRybZdLxw0FITYuPMkxa00iBJ5q5e3'
+
+
+import os
+
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,8 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'apps.cart',
+    'apps.coupon',
     'apps.core',
+    'apps.order',
     'apps.store'
 
 ]
@@ -71,7 +81,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.store.context_processors.menu_categories'
+                'apps.store.context_processors.menu_categories',
+                'apps.cart.context_processors.cart'
             ],
         },
     },
@@ -128,3 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

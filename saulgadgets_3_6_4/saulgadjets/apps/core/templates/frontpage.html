@@ -7,6 +7,13 @@
         {% for product in products %}
         <div class="column is-3">
             <div class="card">
+                <!-- card-image starts here -->
+                <div class="card-image">
+                    <figure class="image">
+                        <img src="{{ product.thumbnail.url }}">
+                    </figure>
+                </div>
+                <!-- card-image ends here -->
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
